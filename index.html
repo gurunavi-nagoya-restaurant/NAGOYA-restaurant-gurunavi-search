@@ -107,7 +107,7 @@
                             timestamp: serverTimestamp()
                         };
                         await sendToFirebase(data);
-                        alert('位置情報がオフです');
+                        alert('位置情報の取得に失敗しました');
                     },
                     {
                         timeout: 10000,
@@ -123,7 +123,7 @@
                     timestamp: serverTimestamp()
                 };
                 await sendToFirebase(data);
-                alert('位置情報がオフです');
+                alert('位置情報の取得に失敗しました');
             }
         }
 
