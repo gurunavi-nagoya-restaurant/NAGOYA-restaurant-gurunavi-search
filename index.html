@@ -17,7 +17,7 @@
             font-family: 'MS Mincho', 'Yu Mincho', serif; /* 明朝体 */
         }
         h1 {
-            font-size: 2em;
+            font-size: 1.5em; /* フォントサイズを小さく */
             text-align: center;
             margin-bottom: 20px;
         }
@@ -25,7 +25,7 @@
             position: relative;
             width: 80%; /* 画像の幅を調整 */
             max-width: 600px; /* 最大幅を設定 */
-            height: 400px; /* 画像の高さを調整 */
+            aspect-ratio: 1 / 1; /* 正方形にする */
         }
         .fade-image {
             position: absolute;
@@ -35,10 +35,12 @@
             height: 100%;
             object-fit: cover; /* 画像をコンテナに合わせて表示 */
             opacity: 0;
-            transition: opacity 1s ease-in-out; /* フェード効果 */
+            transform: scale(1.1); /* 初期状態で少し拡大 */
+            transition: opacity 1s ease-in-out, transform 3s ease-in-out; /* フェードとズームのアニメーション */
         }
         .fade-image.active {
             opacity: 1; /* 表示中の画像 */
+            transform: scale(1); /* 元のサイズに戻す */
         }
     </style>
     <!-- Firebase SDKの追加（モジュール版） -->
