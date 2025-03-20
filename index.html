@@ -6,7 +6,7 @@
     <title>大人のレストランガイド</title>
     <style>
         body {
-            background-color: black;
+            background-color: #111111; /* ほぼ黒に近いグレー */
             color: white;
             margin: 0;
             height: 100vh;
@@ -26,6 +26,7 @@
             width: 80%; /* 画像の幅を調整 */
             max-width: 600px; /* 最大幅を設定 */
             aspect-ratio: 1 / 1; /* 正方形にする */
+            overflow: hidden; /* 画像がコンテナからはみ出ないように */
         }
         .fade-image {
             position: absolute;
@@ -160,7 +161,7 @@
             images[currentIndex].classList.add('active');
 
             // 4秒ごとに画像を切り替える（表示3秒 + フェード1秒）
-            setInterval(showNextImage, 4000);
+            setInterval(showNextImage, 3000);
         });
     </script>
 </head>
