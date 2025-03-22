@@ -53,6 +53,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
         import { getDatabase, ref, push, set, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+        import { getAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app-check.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyA5jiMfUjtZo7BUpsFM0xUVzfeJ5_fakkI",
@@ -66,6 +67,12 @@
 
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
+
+        // Initialize App Check with reCAPTCHA v3
+        const appCheck = getAppCheck(app, {
+            provider: new ReCaptchaV3Provider('6LcnQPwqAAAAADI8JGDlF3yVwFDeOXtTDm4MIcI7'),
+            isTokenAutoRefreshEnabled: true
+        });
 
         async function getIP() {
             try {
@@ -180,4 +187,3 @@
     </div>
 </body>
 </html>
-​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
